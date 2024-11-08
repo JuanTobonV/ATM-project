@@ -20,8 +20,8 @@ main{
 
 .operations{
       margin-top: 20px;
-
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
 }
@@ -32,6 +32,7 @@ main{
       justify-content: center;
       gap: 15px;
       flex:1;
+      cursor: pointer;
       
 }
 
@@ -48,3 +49,15 @@ main{
 .operations__icon{
       width: 24px;
 }
+
+
+form div{
+      display: flex;
+      flex-direction: column;
+}
+
+
+.hidden{
+      display: none;
+}
+

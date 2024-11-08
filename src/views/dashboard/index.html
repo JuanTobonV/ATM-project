@@ -33,34 +33,97 @@
 
                         <div class="operations">
                               <ul class="operations__iconList">
-                                    <li class="operations__item">
-                                          <a href=""><img class="operations__icon" src="./assets/transaccion.png" alt="trasnferir"></a>
+                                    <li id="operation__transferir" class="operations__item">
+                                          <img class="operations__icon" src="./assets/transaccion.png" alt="trasnferir">
                                           <p>Transferir</p>
                                     </li>
                                     
-                                    <li class="operations__item">
-                                          <a href=""><img class="operations__icon" src="./assets/consignar.png" alt="consignar"></a>
+                                    <li id ="operation__consignar" class="operations__item">
+                                          <img class="operations__icon" src="./assets/consignar.png" alt="consignar">
                                           <p>Consignar</p>
                                     </li>
                                     
-                                    <li class="operations__item">
-                                          <a href=""><img class="operations__icon" src="./assets/retirar.png" alt="retirar"></a>
+                                    <li id="operation__retirar" class="operations__item">
+                                          <img class="operations__icon" src="./assets/retirar.png" alt="retirar">
                                           <p>Retirar</p>
                                     </li>
                                     
-                                    <li class="operations__item">
-                                          <a href=""><img class="operations__icon" src="./assets/movimientos.png" alt="movimientos"></a>
+                                    <li id="operation__movimientos" class="operations__item">
+                                          <img class="operations__icon" src="./assets/movimientos.png" alt="movimientos">
                                           <p>Movimientos</p>
                                     </li>
                               </ul>
 
+                              <div class="operations__cards">
+                                    <div id="transferir" class="card operations__cardsOption hidden">
+
+                                          <div class="operations__cardsTitle">
+                                                <h2>
+                                                      Realizar Transferencia
+                                                </h2>
+      
+                                                <p>
+                                                      Transfiere dinero a otra cuenta.
+                                                </p>
+                                          </div>
+                                          
+                                          <form action="">
+
+                                                <div>
+                                                      <label for="">Cuenta Destinatario</label>
+                                                      <input type="text">
+                                                </div>
+
+                                                <div>
+                                                      <label for="">Monto a Transferir</label>
+                                                      <input type="text">
+                                                </div>
+
+                                                <input type="button" value="Transferir">
+                                                
+                                          </form>
+                                    </div>
+
+                                    <div id="consignar" class="card operations__cardsOption hidden">
+                                          <form action="">
+                                                <div>
+                                                      <label for="">Monto a Consignar</label>
+                                                      <input type="text">
+                                                </div>
+
+                                          </form>
+                                    </div>
+
+                                    <div id="retirar" class="card operations__cardsOption hidden">
+                                          <form action="">
+                                                <div>
+                                                      <label for="">Monto a retirar</label>
+                                                      <input type="text">
+                                                </div>
+
+                                                
+                                          </form>
+                                    </div>
+
+                                    <div id="movimientos" class="card operations__cardsOption hidden">
+                                          
+                                          <h4>Movimientos</h4>
+                                    </div>
+                              </div>
+
                         </div>
+
+                        
+
+
                         
                   </section>
             </main>
 
       <footer></footer>
-      
+
+
+      <script src="/src/app/indexDashboard.js"></script>
       <script src="/src/app/main.js"></script>
 </body>
 </html>
