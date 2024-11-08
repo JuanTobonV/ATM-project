@@ -10,12 +10,12 @@
       <header></header>
 
             <main>
-                  <section>
+                  <section class="main__header">
                         <h1>Hola Juan</h1>
                         <p>Bienvenido a ATM! Donde podrás manejar tus finanzas de manera segura y confiable.</p>
                   </section>
 
-                  <section>
+                  <section class="container">
                         <div class="card">
                               <div class="card__accountInfo">
                                     <ul>
@@ -55,7 +55,7 @@
                               </ul>
 
                               <div class="operations__cards">
-                                    <div id="transferir" class="card operations__cardsOption hidden">
+                                    <div id="transferir" class="card operations__cardsOption hidden ">
 
                                           <div class="operations__cardsTitle">
                                                 <h2>
@@ -67,47 +67,66 @@
                                                 </p>
                                           </div>
                                           
-                                          <form action="">
-
+                                          <form class="operations__form"  action="">
                                                 <div>
                                                       <label for="">Cuenta Destinatario</label>
-                                                      <input type="text">
+                                                      <input type="text" placeholder="Número de cuenta">
                                                 </div>
 
                                                 <div>
                                                       <label for="">Monto a Transferir</label>
-                                                      <input type="text">
+                                                      <input type="text" placeholder="0" >
                                                 </div>
 
-                                                <input type="button" value="Transferir">
+                                                <input class="operations__button" type="button" value="Transferir">
                                                 
                                           </form>
                                     </div>
 
                                     <div id="consignar" class="card operations__cardsOption hidden">
-                                          <form action="">
+                                          <form class="operations__form" action="">
+                                                <div class="operations__cardsTitle cardsTitle">
+                                                      <h2>Realizar Consignación</h2>
+                                                      <p>Deposite dinero en su cuenta</p>
+                                                </div>
+
                                                 <div>
                                                       <label for="">Monto a Consignar</label>
-                                                      <input type="text">
+                                                      <input type="text" placeholder="0">
                                                 </div>
+
+                                                <input class="operations__button" type="button" value="Consignar">
+
 
                                           </form>
                                     </div>
 
                                     <div id="retirar" class="card operations__cardsOption hidden">
-                                          <form action="">
+                                          <form class="operations__form" action="">
+
+                                                <div class="operations__cardsTitle cardsTitle">
+                                                      <h2>Realizar Retiro</h2>
+                                                      <p>Retire dinero de su cuenta.</p>
+                                                </div>
+
                                                 <div>
                                                       <label for="">Monto a retirar</label>
-                                                      <input type="text">
+                                                      <input type="text" placeholder="0">
                                                 </div>
+
+                                                <input class="operations__button" type="button" value="Retirar">
+
 
                                                 
                                           </form>
                                     </div>
 
-                                    <div id="movimientos" class="card operations__cardsOption hidden">
+                                    <div id="movimientos" class="card operations__cardsOption hidden ">
                                           
-                                          <h4>Movimientos</h4>
+                                                <div class="operations__cardsTitle">
+                                                      <h2>Movimientos</h2>
+                                                      <p>Sus últimas transacciones.</p>
+                                                </div>
                                     </div>
                               </div>
 
