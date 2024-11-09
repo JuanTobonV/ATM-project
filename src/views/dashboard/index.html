@@ -12,7 +12,7 @@
 
             <main>
                   <section class="main__header">
-                        <h1>Hola Juan</h1>
+                        <h1 id="nombreUsuario"/>
                         <p>Bienvenido a ATM! Donde podrás manejar tus finanzas de manera segura y confiable.</p>
                   </section>
 
@@ -20,15 +20,15 @@
                         <div class="card">
                               <div class="card__accountInfo">
                                     <ul>
-                                          <li>Nombre:</li>
-                                          <li>Numero de cuenta:</li>
+                                          <li id="nombreCuenta"/>
+                                          <li id="numeroCuenta">Numero de cuenta: </li>
                                     </ul>
                               </div>
 
                               <div class="card__accountSalary">
-                                    <h2>Saldo actual</h2>
-                                    <p>Su saldo disponible es: </p>
-                                    <h3>$1.000.000</h3>
+                                    <h2 >Saldo actual</h2>
+                                    <p id="saldoCuenta">Su saldo disponible es: </p>
+                                    <h3></h3>
                               </div>
                         </div>
 
@@ -142,8 +142,7 @@
 
       <footer></footer>
 
-
-      <script type="module" src="/src/app/indexDashboard.js"></script>
+      <script type="module" src="/src/app/controllers/controllerUsuarios.js"></script>
       <script type="module" src="/src/app/main.js"></script>
 </body>
 </html>
