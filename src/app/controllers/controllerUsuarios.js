@@ -1,3 +1,6 @@
+import { usuarios } from "../models/modeloUsuario.js";
+
+localStorage.setItem('listaUsuarios', JSON.stringify(usuarios))
 
 export function sesion(usuarioValidado) {
   window.location.href = "../../views/dashboard/index.html";
@@ -16,6 +19,8 @@ export function sesion(usuarioValidado) {
 document.addEventListener('DOMContentLoaded', () => {
 
     let usuarioValidadoParse = JSON.parse(localStorage.getItem("usuario"))
+
+    let saldoCuenta = usuarioValidadoParse.saldo;
 
     if (nombreUsuario && nombreCuenta && numeroCuenta && saldoCuenta) {
         const nombreUsuario = document.getElementById('nombreUsuario');
@@ -44,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const retirar = document.getElementById("retirar");
     const movimientos = document.getElementById("movimientos");
 
+
     const operations = [transferir, consignar, retirar, movimientos];
 
 
@@ -59,10 +65,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     }
 
+function funcionTransferir(cuentaDestino, montoConsignar) {
+
+    const botonTransferir = document.getElementById('botonTransferir');
+    const cuentaDestinoValue = cuentaDestino.value;
+    const montoConsignarValue = parseFloat(montoConsignar.value);
+
+    botonTransferir.addEventListener('click', () => {
+        console.log(cuentaDestinoValue);
+
+    })
+
+}
+
+
     operationTransferir.addEventListener("click", () => {
-    toggleFunction(transferir);
-    console.log(usuarioValidadoParse);
+        const nombreCuentaDestino = document.getElementById('cuentaDestino');
+        const salarioTransferir = document.getElementById('salarioTransferir');
+        
+        toggleFunction(transferir);
+
+        funcionTransferir(nombreCuentaDestino, salarioTransferir);
+
     });
+    
 
     operationConsignar.addEventListener("click", () => {
     toggleFunction(consignar);
