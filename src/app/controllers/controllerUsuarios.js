@@ -20,9 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let usuarioValidadoParse = JSON.parse(localStorage.getItem("usuario"))
 
-    let saldoCuenta = usuarioValidadoParse.saldo;
+    
 
-    if (nombreUsuario && nombreCuenta && numeroCuenta && saldoCuenta) {
+    if (usuarioValidadoParse) {
+        
         const nombreUsuario = document.getElementById('nombreUsuario');
         const nombreCuenta = document.getElementById('nombreCuenta');
         const numeroCuenta = document.getElementById('numeroCuenta');
@@ -72,7 +73,7 @@ function funcionTransferir(cuentaDestino, montoConsignar) {
     const montoConsignarValue = parseFloat(montoConsignar.value);
 
     botonTransferir.addEventListener('click', () => {
-        console.log(cuentaDestinoValue);
+        console.log(cuentaDestinoValue, montoConsignarValue);
 
     })
 
