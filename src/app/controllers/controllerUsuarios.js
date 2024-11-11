@@ -1,7 +1,3 @@
-import { usuarios } from "../models/modeloUsuario.js";
-
-localStorage.setItem('listaUsuarios', JSON.stringify(usuarios));
-
 export function sesion(usuarioValidado) {
     window.location.href = "/src/views/dashboard/dashboard.html";
     localStorage.setItem("usuario", JSON.stringify(usuarioValidado));
