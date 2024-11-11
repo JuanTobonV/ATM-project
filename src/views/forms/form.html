@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/desktop/form.css">
+    <title>forms 2</title>
+</head>
+<body>
+    <header></header>
+
+    <main>
+        <div class="contenedor">
+            <div class="encabezado">
+                <h1>ATM</h1>
+                <p style="text-align: center;">Todos tus movimientos a un click, registrate e inicia sesión en ATM Bank</p>
+            </div>
+            
+            <div class="enlaces">
+                <a class="fondo-enlace-registro" href="javascript:void(0)" id="enlace-registro" onclick="mostrarFormulario('contenido-formulario1')">Registro</a>
+                <a class="fondo-enlace-login" href="javascript:void(0)" id="enlace-login" onclick="mostrarFormulario('contenido-formulario2')">Login</a>
+            </div>
+        
+            <div id="contenido-formulario1">
+                <div id="formularioRegistro">
+                    <form class="registro">
+                        <h2>Regístrate</h2>
+                        <p>Crea una nueva cuenta</p>
+                        <br>
+                        <label>Nombre de usuario:</label>
+                        <input type="text" id="usuarioRegistro" name="usuario" class="inputs">
+            
+                        <label>Contraseña:</label>
+                        <input type="password" id="contraseñaRegistro" name="contraseña" class="inputs">
+            
+                        <label>Confirmar Contraseña:</label>
+                        <input type="password" id="confirmarContraseña" name="confirmarContraseña" class="inputs">
+            
+                        <button type="button" class="botones" id="registroBtn">Registrarme</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="contenido-formulario2">
+                <div id="formularioIngreso">
+                    <div id="formularioLogin">
+                        <form class="login">
+                            <h2>Ingresa</h2>
+                            <p>Bienvenido</p>
+                            <br>
+                            <label>Nombre de usuario:</label>
+                            <input type="text" id="nombreUsuario" name="usuario" class="inputs">
+                
+                            <label>Contraseña:</label>
+                            <input type="password" id="inicioSesionContraseña" name="contraseña" class="inputs">
+    
+                            <button type="submit" class="botones" id="inicioSesionBoton">Ingresar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>       
+        </div>
+    </main>
+
+    <footer></footer>
+
+    <script type="module" src="/src/app/js/validator.js"></script>
+    <script src="/src/app/js/forms.js"></script>
+    <script src="/src/app/js/main.js"></script>
+</body>
+</html>
