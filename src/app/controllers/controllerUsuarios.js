@@ -3,7 +3,7 @@ import { usuarios } from "../models/modeloUsuario.js";
 localStorage.setItem('listaUsuarios', JSON.stringify(usuarios))
 
 export function sesion(usuarioValidado) {
-  window.location.href = "../../views/dashboard/index.html";
+  window.location.href = "/src/views/dashboard/index.html";
 
   localStorage.setItem("usuario", JSON.stringify(usuarioValidado));
 
@@ -20,16 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let usuarioValidadoParse = JSON.parse(localStorage.getItem("usuario"))
 
-    
+    const nombreUsuario = document.getElementById('nombreUsuario');
+    const nombreCuenta = document.getElementById('nombreCuenta');
+    const numeroCuenta = document.getElementById('numeroCuenta');
+    const saldoCuenta = document.getElementById('saldoCuenta');
+
 
     if (usuarioValidadoParse) {
-        
-        const nombreUsuario = document.getElementById('nombreUsuario');
-        const nombreCuenta = document.getElementById('nombreCuenta');
-        const numeroCuenta = document.getElementById('numeroCuenta');
-        const saldoCuenta = document.getElementById('saldoCuenta');
 
-        if (nombreUsuario) {
+        if (usuarioValidadoParse) {
             nombreUsuario.textContent = `Hola ${usuarioValidadoParse.nombrePersona}`;
             nombreCuenta.textContent = `Cuenta: ${(usuarioValidadoParse.nombreCuenta)}`;
             numeroCuenta.textContent = `Numero de cuenta: ${usuarioValidadoParse.id}`;
