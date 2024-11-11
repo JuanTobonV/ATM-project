@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="./styles/Mobile/index.css">
+      <link rel="stylesheet" href="./styles/Desktop/index.css">
+      <title>ATM project</title>
+</head>
+<body>
+      <header></header>
+
+            <main>
+                  <section class="main__header">
+                        <h1 id="nombreUsuario"/>
+                        <p>Bienvenido a ATM! Donde podrás manejar tus finanzas de manera segura y confiable.</p>
+                  </section>
+
+                  <section class="container">
+                        <div class="card">
+                              <div class="card__accountInfo">
+                                    <ul>
+                                          <li id="nombreCuenta"/>
+                                          <li id="numeroCuenta">Numero de cuenta: </li>
+                                    </ul>
+                              </div>
+
+                              <div class="card__accountSalary">
+                                    <h2 >Saldo actual</h2>
+                                    <p id="saldoCuenta">Su saldo disponible es: </p>
+                                    <h3></h3>
+                              </div>
+                        </div>
+
+                        <div class="operations">
+                              <ul class="operations__iconList">
+                                    <li id="operation__transferir" class="operations__item">
+                                          <img class="operations__icon" src="./assets/transaccion.png" alt="trasnferir">
+                                          <p>Transferir</p>
+                                    </li>
+                                    
+                                    <li id ="operation__consignar" class="operations__item">
+                                          <img class="operations__icon" src="./assets/consignar.png" alt="consignar">
+                                          <p>Consignar</p>
+                                    </li>
+                                    
+                                    <li id="operation__retirar" class="operations__item">
+                                          <img class="operations__icon" src="./assets/retirar.png" alt="retirar">
+                                          <p>Retirar</p>
+                                    </li>
+                                    
+                                    <li id="operation__movimientos" class="operations__item">
+                                          <img class="operations__icon" src="./assets/movimientos.png" alt="movimientos">
+                                          <p>Movimientos</p>
+                                    </li>
+                              </ul>
+
+                              <div class="operations__cards">
+                                    <div id="transferir" class="card operations__cardsOption hidden ">
+
+                                          <div class="operations__cardsTitle">
+                                                <h2>
+                                                      Realizar Transferencia
+                                                </h2>
+      
+                                                <p>
+                                                      Transfiere dinero a otra cuenta.
+                                                </p>
+                                          </div>
+                                          
+                                          <form class="operations__form"  action="">
+                                                <div>
+                                                      <label for="">Cuenta Destinatario</label>
+                                                      <input id="cuentaDestino" type="text" placeholder="Número de cuenta">
+                                                </div>
+
+                                                <div>
+                                                      <label for="">Monto a Transferir</label>
+                                                      <input id="salarioTransferir" type="text" placeholder="0" >
+                                                </div>
+
+                                                <input id="botonTransferir" class="operations__button" type="button" value="Transferir">
+                                                
+                                          </form>
+                                    </div>
+
+                                    <div id="consignar" class="card operations__cardsOption hidden">
+                                          <form class="operations__form" action="">
+                                                <div class="operations__cardsTitle cardsTitle">
+                                                      <h2>Realizar Consignación</h2>
+                                                      <p>Deposite dinero en su cuenta</p>
+                                                </div>
+
+                                                <div>
+                                                      <label for="">Monto a Consignar</label>
+                                                      <input type="text" placeholder="0">
+                                                </div>
+
+                                                <input class="operations__button" type="button" value="Consignar">
+
+
+                                          </form>
+                                    </div>
+
+                                    <div id="retirar" class="card operations__cardsOption hidden">
+                                          <form class="operations__form" action="">
+
+                                                <div class="operations__cardsTitle cardsTitle">
+                                                      <h2>Realizar Retiro</h2>
+                                                      <p>Retire dinero de su cuenta.</p>
+                                                </div>
+
+                                                <div>
+                                                      <label for="">Monto a retirar</label>
+                                                      <input type="text" placeholder="0">
+                                                </div>
+
+                                                <input class="operations__button" type="button" value="Retirar">
+
+
+                                                
+                                          </form>
+                                    </div>
+
+                                    <div id="movimientos" class="card operations__cardsOption hidden ">
+                                          
+                                                <div class="operations__cardsTitle">
+                                                      <h2>Movimientos</h2>
+                                                      <p>Sus últimas transacciones.</p>
+                                                </div>
+                                    </div>
+                              </div>
+
+                        </div>
+
+                        
+
+
+                        
+                  </section>
+            </main>
+
+      <footer></footer>
+
+      <script type="module" src="/src/app/controllers/controllerUsuarios.js"></script>
+      <script type="module" src="/src/app/js/main.js"></script>
+</body>
+</html>
