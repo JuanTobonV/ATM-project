@@ -129,5 +129,33 @@
             background-color: rgb(44, 44, 44);
       }
       
+
+  
 }
+  table{
+      width: 100%;
+      
+  }
+
+  thead{
+      
+      
+      
+      justify-content: space-evenly;
+
+      
+  }
+
+  tr{
+      width: 100%;
+      border-bottom: 1px solid #F2F2F2;
+  }
+
+  th{
+      width: 50%;
+      padding: 15px 0px
+  }
+  td{
+      text-align: center;
+  }
 
