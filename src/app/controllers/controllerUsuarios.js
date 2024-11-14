@@ -80,6 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 localStorage.setItem("usuario", JSON.stringify(usuarioValidadoParse));
 
+                
+
                 addMovimientos(consignar, valoraConsignar)
 
                 
@@ -89,12 +91,20 @@ document.addEventListener('DOMContentLoaded', () => {
         ///////////////////////////////////////////////////////////////
         operationRetirar.addEventListener("click", () => {
             toggleFunction(retirar);
+
+            let botonParaRetirar = document.getElementById('botonParaRetirar')
+
+            botonParaRetirar.addEventListener('click', () =>{
+
+                //Luis, acá va la lógica para retirar, no eliminar la funcionalidad de addMovimientos()
+
+                addMovimientos(retirar, /* Acá va la variable del valor que el usuario decidio usar */)
+
+            })
         });
 
         operationMovimientos.addEventListener("click", () => {
             toggleFunction(movimientos);
-
-            
         });
 
     } else {

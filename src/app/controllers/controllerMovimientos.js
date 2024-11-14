@@ -1,22 +1,26 @@
 export function addMovimientos(tipo, valorMovimiento){
 
     let movimientosUsuario = [];
+    
 
     let tableBody = document.getElementById('tableBody')
     let tableRow = document.createElement("tr")
 
     function crearMovimiento(campoTipoMovimiento, campoValorMovimiento){
 
-        movimientosUsuario.push({
+        let movimiento = {
             tipoMovimiento: campoTipoMovimiento,
             valorMovimiento: campoValorMovimiento,
-        })
+        };
+
+        movimientosUsuario.push(movimiento);
+
 
         localStorage.setItem('historialMovimientosUsuario',JSON.stringify(movimientosUsuario))
 
         let movimientoParseado = JSON.parse(localStorage.getItem('historialMovimientosUsuario'))
 
-        movimientosUsuario.forEach(movimientoAuxiliar => {
+        movimientoParseado.forEach(movimientoAuxiliar => {
 
             console.log(movimientoAuxiliar.tipoMovimiento);
 
@@ -39,8 +43,14 @@ export function addMovimientos(tipo, valorMovimiento){
 
     switch (tipo){
         case consignar:
-            crearMovimiento("Consignacion", valorMovimiento)
-            break
+            crearMovimiento("Consignacion", valorMovimiento);
+            break;
+        case retirar:
+            crearMovimiento('Retiro', valorMovimiento);
+            break;
+        case trasnferir:
+            crearMovimiento('transferencia', valorMovimiento);
+            break;
         
     }
 }
