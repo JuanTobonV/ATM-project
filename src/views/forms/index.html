@@ -29,13 +29,13 @@
                         <p>Crea una nueva cuenta</p>
                         <br>
                         <label>Nombre de usuario:</label>
-                        <input type="text" id="usuarioRegistro" name="usuario" class="inputs">
+                        <input type="text" id="usuarioRegistro" name="usuario" class="inputs" required>
             
                         <label>Contraseña:</label>
-                        <input type="password" id="contraseñaRegistro" name="contraseña" class="inputs">
+                        <input type="password" id="contraseñaRegistro" name="contraseña" class="inputs" required>
             
                         <label>Confirmar Contraseña:</label>
-                        <input type="password" id="confirmarContraseña" name="confirmarContraseña" class="inputs">
+                        <input type="password" id="confirmarContraseña" name="confirmarContraseña" class="inputs" required>
             
                         <button type="button" class="botones" id="registroBtn">Registrarme</button>
                     </form>
@@ -66,6 +66,7 @@
 
     <footer></footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module" src="../../app/models/modeloLogin.js"></script>
     <script type="module" src="../../app/models/modeloRegistro.js"></script>
     <script src="/src/app/js/forms.js"></script>
