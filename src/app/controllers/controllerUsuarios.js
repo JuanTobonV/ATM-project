@@ -64,8 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
 
-        ///////////////////////////////////////////////////////////////
-
+        /*Operación consignar */
         operationConsignar.addEventListener("click", () => {
             toggleFunction(consignar);
 
@@ -88,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        ///////////////////////////////////////////////////////////////
+        /*Operación Retirar */
         operationRetirar.addEventListener("click", () => {
             toggleFunction(retirar);
 
