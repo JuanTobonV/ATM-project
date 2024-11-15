@@ -25,18 +25,18 @@
         
             <div id="contenido-formulario1">
                 <div id="formularioRegistro">
-                    <form class="registro">
+                    <form class="registro" id="formulario1">
                         <h2>Regístrate</h2>
                         <p>Crea una nueva cuenta</p>
                         <br>
                         <label>Nombre de usuario:</label>
-                        <input type="text" id="usuarioRegistro" name="usuario" class="inputs">
+                        <input type="text" id="usuarioRegistro" name="usuario" class="inputs" required>
             
                         <label>Contraseña:</label>
-                        <input type="password" id="contraseñaRegistro" name="contraseña" class="inputs">
+                        <input type="password" id="contraseñaRegistro" name="contraseña" class="inputs" required>
             
                         <label>Confirmar Contraseña:</label>
-                        <input type="password" id="confirmarContraseña" name="confirmarContraseña" class="inputs">
+                        <input type="password" id="confirmarContraseña" name="confirmarContraseña" class="inputs" required>
             
                         <button type="button" class="botones" id="registroBtn">Registrarme</button>
                     </form>
@@ -46,7 +46,7 @@
             <div id="contenido-formulario2">
                 <div id="formularioIngreso">
                     <div id="formularioLogin">
-                        <form class="login">
+                        <form class="login" id="formulario2">
                             <h2>Ingresa</h2>
                             <p>Bienvenido</p>
                             <br>
@@ -67,8 +67,9 @@
 
     <footer></footer>
 
-
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="../../app/models/modeloLogin.js"></script>
+    <script type="module" src="../../app/models/modeloRegistro.js"></script>
     <script src="/src/app/js/forms.js"></script>
     <script type="module" src="../../app/models/modeloRegistro.js"></script>
     <script type="module" src="../../app/models/modeloLogin.js"></script>
