@@ -3,10 +3,7 @@ import { addMovimientos } from "./controllerMovimientos.js";
 export function sesion(usuarioValidado) {
     window.location.href = "/src/views/dashboard/dashboard.html";
     localStorage.setItem("usuario", JSON.stringify(usuarioValidado));
-
-    let listaMovimientos = [];
-
-    localStorage.setItem("listaMovimientosUsuarioSesion", JSON.stringify(listaMovimientos))
+    localStorage.getItem('listaMovimientosUsuarioSesion')
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -140,8 +137,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         operationMovimientos.addEventListener("click", () => {
+
+            pintarMovimiento();
+
             toggleFunction(movimientos);
+
+            
+            
         });
+
+        function pintarMovimiento() {
+            let movimientosUsuario = JSON.parse(localStorage.getItem('listaMovimientosUsuarioSesion')) || [];
+            let tableBody = document.getElementById('tableBody');
+    
+            // Limpiar la tabla antes de agregar los movimientos
+            tableBody.innerHTML = '';
+    
+            movimientosUsuario.forEach(elemento => {
+                let tableRow = document.createElement("tr");
+    
+                let campoMovimiento = document.createElement("td");
+                campoMovimiento.textContent = `${elemento.tipoMovimiento}`;
+    
+                let campoValor = document.createElement("td");
+                campoValor.textContent = `$ ${elemento.valorMovimiento}`;
+    
+                tableRow.appendChild(campoMovimiento);
+                tableRow.appendChild(campoValor);
+    
+                tableBody.appendChild(tableRow);
+            });
+        }
 
     } else {
         console.error('No se encontró un usuario válido en localStorage.');

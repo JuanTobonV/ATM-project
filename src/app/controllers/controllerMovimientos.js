@@ -1,10 +1,6 @@
 export function addMovimientos(tipo, valorMovimiento){
 
     let movimientosUsuario = JSON.parse(localStorage.getItem('listaMovimientosUsuarioSesion')) || []
-    
-
-    let tableBody = document.getElementById('tableBody')
-    let tableRow = document.createElement("tr")
 
     function crearMovimiento(campoTipoMovimiento, campoValorMovimiento){
 
@@ -17,27 +13,9 @@ export function addMovimientos(tipo, valorMovimiento){
 
 
         localStorage.setItem('listaMovimientosUsuarioSesion',JSON.stringify(movimientosUsuario))
-        pintarMovimiento(movimiento)
+
     }
 
-    function pintarMovimiento(movimiento){
-
-        
-        let campoMovimiento = document.createElement("td")
-        campoMovimiento.textContent = `${movimiento.tipoMovimiento}`
-
-        let campoValor = document.createElement("td")
-        campoValor.textContent = `$ ${movimiento.valorMovimiento}`
-
-            
-        tableRow.appendChild(campoMovimiento)
-        tableRow.appendChild(campoValor)
-
-        tableBody.appendChild(tableRow)
-            
-
-        
-    }
 
     switch (tipo){
         case consignar:
