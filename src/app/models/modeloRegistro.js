@@ -3,24 +3,66 @@ let contraseñaUsuarioRegistro = document.getElementById('contraseñaRegistro');
 let confirmarContraseñaUsuarioRegistro = document.getElementById('confirmarContraseña');
 
 const botonRegistro = document.getElementById('registroBtn');
+let formulario = document.getElementById('formulario1');
 
 let listaUsuariosRegistrados = [];
-
 let idCounter = 1;
-botonRegistro.addEventListener('click', () => {
 
-if(contraseñaUsuarioRegistro.value === confirmarContraseñaUsuarioRegistro.value){
+botonRegistro.addEventListener('click', function(event) {
 
-            let usuario = {
-                id: idCounter++,
-                nombrePersona: nombreUsuarioRegistro.value,
-                contraseña: confirmarContraseñaUsuarioRegistro.value,
-                nombreCuenta: 'cuenta de '+nombreUsuarioRegistro.value,
-                saldo: 200000
-            }
+    event.preventDefault();
+
+    if (nombreUsuarioRegistro.value.trim() === "") {
+        alert("El nombre de usuario no puede estar vacío.");
+
+        nombreUsuarioRegistro.value = '';
+        contraseñaUsuarioRegistro.value = '';
+        confirmarContraseñaUsuarioRegistro.value = '';
+        return;
+    }
+
+    if (contraseñaUsuarioRegistro.value.trim() === "") {
+        alert("La contraseña no puede estar vacía.");
+
+        nombreUsuarioRegistro.value = '';
+        contraseñaUsuarioRegistro.value = '';
+        confirmarContraseñaUsuarioRegistro.value = '';
+        return;
+    }
+
+    if (confirmarContraseñaUsuarioRegistro.value.trim() === "") {
+        alert("Debes confirmar tu contraseña.");
+
+        nombreUsuarioRegistro.value = '';
+        contraseñaUsuarioRegistro.value = '';
+        confirmarContraseñaUsuarioRegistro.value = '';
+        return;
+    }
+
+    if (contraseñaUsuarioRegistro.value !== confirmarContraseñaUsuarioRegistro.value) {
+        
+        Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Las contraseñas No coinciden!"
+        });
+
+        nombreUsuarioRegistro.value = '';
+        contraseñaUsuarioRegistro.value = '';
+        confirmarContraseñaUsuarioRegistro.value = '';
+        return;
+    }
+
+    let usuario = {
+        id: idCounter++,
+        nombrePersona: nombreUsuarioRegistro.value,
+        contraseña: confirmarContraseñaUsuarioRegistro.value,
+        nombreCuenta: 'cuenta de '+nombreUsuarioRegistro.value,
+        saldo: 200000
+    }
     
-            listaUsuariosRegistrados.push(usuario);
-            localStorage.setItem("storageUsuarioRegistrados", JSON.stringify(listaUsuariosRegistrados));
+    listaUsuariosRegistrados.push(usuario);
+    localStorage.setItem("storageUsuarioRegistrados", JSON.stringify(listaUsuariosRegistrados));
 
     Swal.fire({
         position: "center",
@@ -29,18 +71,9 @@ if(contraseñaUsuarioRegistro.value === confirmarContraseñaUsuarioRegistro.valu
         showConfirmButton: false,
         timer: 2000
     });
-
-}else{
-
-    Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Las contraseñas No coinciden!",
-        //footer: '<a href="#">Why do I have this issue?</a>'
-    });
-
-}
+    
     nombreUsuarioRegistro.value = '';
     contraseñaUsuarioRegistro.value = '';
     confirmarContraseñaUsuarioRegistro.value = '';
-})
+  
+});
