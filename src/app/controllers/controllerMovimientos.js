@@ -1,6 +1,6 @@
 export function addMovimientos(tipo, valorMovimiento){
 
-    let movimientosUsuario = [];
+    let movimientosUsuario = JSON.parse(localStorage.getItem('listaMovimientosUsuarioSesion')) || []
     
 
     let tableBody = document.getElementById('tableBody')
@@ -16,29 +16,27 @@ export function addMovimientos(tipo, valorMovimiento){
         movimientosUsuario.push(movimiento);
 
 
-        localStorage.setItem('historialMovimientosUsuario',JSON.stringify(movimientosUsuario))
+        localStorage.setItem('listaMovimientosUsuarioSesion',JSON.stringify(movimientosUsuario))
+        pintarMovimiento(movimiento)
+    }
 
-        let movimientoParseado = JSON.parse(localStorage.getItem('historialMovimientosUsuario'))
+    function pintarMovimiento(movimiento){
 
-        movimientoParseado.forEach(movimientoAuxiliar => {
+        
+        let campoMovimiento = document.createElement("td")
+        campoMovimiento.textContent = `${movimiento.tipoMovimiento}`
 
-            console.log(movimientoAuxiliar.tipoMovimiento);
-
-            let campoMovimiento = document.createElement("td")
-            campoMovimiento.textContent = `${movimientoAuxiliar.tipoMovimiento}`
-
-            let campoValor = document.createElement("td")
-            campoValor.textContent = `$ ${movimientoAuxiliar.valorMovimiento}`
+        let campoValor = document.createElement("td")
+        campoValor.textContent = `$ ${movimiento.valorMovimiento}`
 
             
-            tableRow.appendChild(campoMovimiento)
-            tableRow.appendChild(campoValor)
+        tableRow.appendChild(campoMovimiento)
+        tableRow.appendChild(campoValor)
 
-            tableBody.appendChild(tableRow)
+        tableBody.appendChild(tableRow)
             
 
-        })
-
+        
     }
 
     switch (tipo){
@@ -48,7 +46,7 @@ export function addMovimientos(tipo, valorMovimiento){
         case retirar:
             crearMovimiento('Retiro', valorMovimiento);
             break;
-        case trasnferir:
+        case transferir:
             crearMovimiento('transferencia', valorMovimiento);
             break;
         

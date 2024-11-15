@@ -3,10 +3,11 @@ import { addMovimientos } from "./controllerMovimientos.js";
 export function sesion(usuarioValidado) {
     window.location.href = "/src/views/dashboard/dashboard.html";
     localStorage.setItem("usuario", JSON.stringify(usuarioValidado));
+
+    let listaMovimientos = [];
+
+    localStorage.setItem("listaMovimientosUsuarioSesion", JSON.stringify(listaMovimientos))
 }
-
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -45,47 +46,84 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        function funcionTransferir(cuentaDestino, montoConsignar) {
-            const botonTransferir = document.getElementById('botonTransferir');
-            const cuentaDestinoValue = cuentaDestino.value;
-            const montoConsignarValue = parseFloat(montoConsignar.value);
+        function funcionTransferir(cuentaDestino, montoTransferir) {
+            let listaUsuarios = JSON.parse(localStorage.getItem('storageUsuarioRegistrados'));
+            let usuarioActual = JSON.parse(localStorage.getItem('usuario'));
 
-            botonTransferir.addEventListener('click', () => {
-                console.log(cuentaDestinoValue, montoConsignarValue);
-            });
+            let usuarioDestino = listaUsuarios.find(usuario => usuario.nombrePersona === cuentaDestino);
+
+            if (usuarioDestino) {
+
+                if (usuarioActual.saldo >= montoTransferir) {
+
+                    usuarioActual.saldo -= montoTransferir;
+                    usuarioDestino.saldo += montoTransferir;
+
+                    localStorage.setItem('usuario', JSON.stringify(usuarioActual));
+                    localStorage.setItem('storageUsuarioRegistrados', JSON.stringify(listaUsuarios));
+
+                    console.log(`Transferencia realizada: ${montoTransferir} de ${usuarioActual.nombrePersona} a ${usuarioDestino.nombrePersona}`);
+                    addMovimientos(transferir, Number(salarioTransferir.value))
+
+                    alert('Transferencia realizada con éxito');
+                } else {
+                    alert('Saldo insuficiente');
+                }
+            } else {
+                alert('No existe la cuenta de destino');
+            }
+
         }
 
         operationTransferir.addEventListener("click", () => {
-            const nombreCuentaDestino = document.getElementById('cuentaDestino');
-            const salarioTransferir = document.getElementById('salarioTransferir');
+            const botonTransferir = document.getElementById('botonTransferir');
+
+            if (botonTransferir) {
+                botonTransferir.removeEventListener('click', handleTransferirClick);
+                botonTransferir.addEventListener('click', handleTransferirClick);
+            }
 
             toggleFunction(transferir);
-            funcionTransferir(nombreCuentaDestino, salarioTransferir);
+
+            
         });
 
+        function handleTransferirClick() {
+            const nombreCuentaDestino = document.getElementById('cuentaDestino');
+            const salarioTransferir = document.getElementById('salarioTransferir');
+            funcionTransferir(nombreCuentaDestino.value,Number(salarioTransferir.value) );
+
+
+        }
+
+        function funcionConsignar(cuentaActual, montoConsignar){
+            cuentaActual.saldo += Number(montoConsignar);
+            addMovimientos(consignar, montoConsignar)
+        }
 
         /*Operación consignar */
         operationConsignar.addEventListener("click", () => {
-            toggleFunction(consignar);
-
-            
 
             let botonParaConsignar = document.getElementById('botonParaConsignar');
 
-            botonParaConsignar.addEventListener('click', () => {
+          
+            if (botonParaConsignar) {
+                botonParaConsignar.removeEventListener('click', handleConsignarClick);
+                botonParaConsignar.addEventListener('click', handleConsignarClick);
+            }
 
-                let valoraConsignar = document.getElementById('campo__consignar').value;
-                usuarioValidadoParse.saldo += Number(valoraConsignar);
+            toggleFunction(consignar);
 
-                localStorage.setItem("usuario", JSON.stringify(usuarioValidadoParse));
-
-                
-
-                addMovimientos(consignar, valoraConsignar)
-
-                
-            });
+            
         });
+
+        function handleConsignarClick (){
+            let usuarioActual = JSON.parse(localStorage.getItem('usuario'))
+            const valoraConsignar = document.getElementById('campo__consignar')
+
+            funcionConsignar(usuarioActual, valoraConsignar.value)
+
+        }
 
         /*Operación Retirar */
         operationRetirar.addEventListener("click", () => {
@@ -93,12 +131,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let botonParaRetirar = document.getElementById('botonParaRetirar')
 
-            botonParaRetirar.addEventListener('click', () =>{
+            botonParaRetirar.addEventListener('click', () => {
 
                 //Luis, acá va la lógica para retirar, no eliminar la funcionalidad de addMovimientos()
 
                 addMovimientos(retirar, /* Acá va la variable del valor que el usuario decidio usar */)
-
             })
         });
 
