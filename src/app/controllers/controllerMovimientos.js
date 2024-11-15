@@ -1,32 +1,30 @@
-export function addMovimientos(tipo, valorMovimiento){
+export function addMovimientos(tipo, valorMovimiento) {
+  let movimientosUsuario =
+    JSON.parse(localStorage.getItem("listaMovimientosUsuarioSesion")) || [];
 
-    let movimientosUsuario = JSON.parse(localStorage.getItem('listaMovimientosUsuarioSesion')) || []
+  function crearMovimiento(campoTipoMovimiento, campoValorMovimiento) {
+    let movimiento = {
+      tipoMovimiento: campoTipoMovimiento,
+      valorMovimiento: campoValorMovimiento,
+    };
 
-    function crearMovimiento(campoTipoMovimiento, campoValorMovimiento){
+    movimientosUsuario.push(movimiento);
 
-        let movimiento = {
-            tipoMovimiento: campoTipoMovimiento,
-            valorMovimiento: campoValorMovimiento,
-        };
+    localStorage.setItem(
+      "listaMovimientosUsuarioSesion",
+      JSON.stringify(movimientosUsuario)
+    );
+  }
 
-        movimientosUsuario.push(movimiento);
-
-
-        localStorage.setItem('listaMovimientosUsuarioSesion',JSON.stringify(movimientosUsuario))
-
-    }
-
-
-    switch (tipo){
-        case consignar:
-            crearMovimiento("Consignacion", valorMovimiento);
-            break;
-        case retirar:
-            crearMovimiento('Retiro', valorMovimiento);
-            break;
-        case transferir:
-            crearMovimiento('transferencia', valorMovimiento);
-            break;
-        
-    }
+  switch (tipo) {
+    case consignar:
+      crearMovimiento("Consignacion", valorMovimiento);
+      break;
+    case retirar:
+      crearMovimiento("Retiro", valorMovimiento);
+      break;
+    case transferir:
+      crearMovimiento("transferencia", valorMovimiento);
+      break;
+  }
 }
