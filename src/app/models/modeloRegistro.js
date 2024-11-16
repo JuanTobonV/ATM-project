@@ -62,8 +62,6 @@ botonRegistro.addEventListener('click', function(event) {
         saldo: 200000
     }
 
-    
-    
     listaUsuariosRegistrados.push(usuario);
     localStorage.setItem("storageUsuarioRegistrados", JSON.stringify(listaUsuariosRegistrados));
 
