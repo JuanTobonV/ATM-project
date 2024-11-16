@@ -8,7 +8,7 @@ let formulario = document.getElementById('formulario1');
 let listaUsuariosRegistrados = [];
 let idCounter = 1;
 
-export let usuarioObj = usuario; // nos lo llevamos a dahsboard y se cargan nuevamente al local storgae para que persistan cuando se cierre sesión
+//export let usuarioObj = usuario; // nos lo llevamos a dahsboard y se cargan nuevamente al local storgae para que persistan cuando se cierre sesión
 
 botonRegistro.addEventListener('click', function(event) {
 
