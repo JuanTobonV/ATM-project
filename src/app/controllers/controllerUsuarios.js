@@ -1,9 +1,7 @@
 export function sesion(usuarioValidado) {
-    window.location.href = "/src/views/dashboard/dashboard.html";
     localStorage.setItem("usuario", JSON.stringify(usuarioValidado));
+    window.location.href = "/src/views/dashboard/dashboard.html";
 }
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
 
