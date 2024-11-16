@@ -7,7 +7,7 @@ export function sesion(usuarioValidado) {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    let usuarioValidadoParse = JSON.parse(localStorage.getItem("usuario"));
+  let usuarioValidadoParse = JSON.parse(localStorage.getItem("usuario"));
 
   const nombreUsuario = document.getElementById("nombreUsuario");
   const nombreCuenta = document.getElementById("nombreCuenta");
