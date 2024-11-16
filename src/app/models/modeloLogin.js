@@ -12,13 +12,18 @@ botonLogin.addEventListener('click', () => {
     let listaUsuariosRegistrados = JSON.parse(localStorage.getItem("storageUsuarioRegistrados"));
     console.log(listaUsuariosRegistrados.nombrePersona);
 
+    let usuarioEncontrado = false; // Variable para verificar si el usuario existe
+
     listaUsuariosRegistrados.forEach(usuarioAuxiliar => {
-        if(nombreUsuarioLogin.value === usuarioAuxiliar.nombrePersona){
-            sesion(usuarioAuxiliar)            
-        } else{
-            window.location.href = '../../views/forms/index.html'
-            alert('Regístrate para poder inciar sesión');
-        }       
         
-    })
+    if (nombreUsuarioLogin.value === usuarioAuxiliar.nombrePersona) {
+        sesion(usuarioAuxiliar);
+        usuarioEncontrado = true; // El usuario ha sido encontrado
+    }
+    });
+
+    if (!usuarioEncontrado) {
+    alert('Regístrate para poder iniciar sesión');
+    window.location.href = '../../views/forms/index.html';
+}
 })

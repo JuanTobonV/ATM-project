@@ -1,13 +1,13 @@
 import { addMovimientos } from "./controllerMovimientos.js";
 
 export function sesion(usuarioValidado) {
-  window.location.href = "/src/views/dashboard/dashboard.html";
-  localStorage.setItem("usuario", JSON.stringify(usuarioValidado));
-  localStorage.getItem("listaMovimientosUsuarioSesion");
+    localStorage.setItem("usuario", JSON.stringify(usuarioValidado));
+    window.location.href = "/src/views/dashboard/dashboard.html";
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  let usuarioValidadoParse = JSON.parse(localStorage.getItem("usuario"));
+document.addEventListener('DOMContentLoaded', () => {
+
+    let usuarioValidadoParse = JSON.parse(localStorage.getItem("usuario"));
 
   const nombreUsuario = document.getElementById("nombreUsuario");
   const nombreCuenta = document.getElementById("nombreCuenta");
