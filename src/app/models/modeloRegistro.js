@@ -60,6 +60,7 @@ botonRegistro.addEventListener('click', function(event) {
         nombrePersona: nombreUsuarioRegistro.value,
         contraseña: confirmarContraseñaUsuarioRegistro.value,
         nombreCuenta: 'cuenta de '+nombreUsuarioRegistro.value,
+        listaMovimientos: [],
         saldo: 200000
     }
 

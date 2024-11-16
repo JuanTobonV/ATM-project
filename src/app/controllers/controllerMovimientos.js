@@ -1,19 +1,16 @@
 export function addMovimientos(tipo, valorMovimiento) {
-  let movimientosUsuario =
-    JSON.parse(localStorage.getItem("listaMovimientosUsuarioSesion")) || [];
+  let movimientosUsuario = JSON.parse(localStorage.getItem("usuario")) || [];
 
   function crearMovimiento(campoTipoMovimiento, campoValorMovimiento) {
+
     let movimiento = {
       tipoMovimiento: campoTipoMovimiento,
       valorMovimiento: campoValorMovimiento,
     };
 
-    movimientosUsuario.push(movimiento);
+    movimientosUsuario.listaMovimientos.push(movimiento);
 
-    localStorage.setItem(
-      "listaMovimientosUsuarioSesion",
-      JSON.stringify(movimientosUsuario)
-    );
+    localStorage.setItem("listaMovimientosUsuarioSesion", JSON.stringify(movimientosUsuario));
   }
 
   switch (tipo) {
