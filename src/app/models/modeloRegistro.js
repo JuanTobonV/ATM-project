@@ -5,10 +5,9 @@ let confirmarContraseñaUsuarioRegistro = document.getElementById('confirmarCont
 const botonRegistro = document.getElementById('registroBtn');
 let formulario = document.getElementById('formulario1');
 
-let listaUsuariosRegistrados = [];
-let idCounter = 1;
-
-//export let usuarioObj = usuario; // nos lo llevamos a dahsboard y se cargan nuevamente al local storgae para que persistan cuando se cierre sesión
+// Cargar lista de usuarios desde localStorage si existe
+let listaUsuariosRegistrados = JSON.parse(localStorage.getItem("storageUsuarioRegistrados")) || [];
+let idCounter = listaUsuariosRegistrados.length > 0 ? listaUsuariosRegistrados[listaUsuariosRegistrados.length - 1].id + 1 : 1;
 
 botonRegistro.addEventListener('click', function(event) {
 
@@ -63,8 +62,6 @@ botonRegistro.addEventListener('click', function(event) {
         saldo: 200000
     }
 
-    
-    
     listaUsuariosRegistrados.push(usuario);
     localStorage.setItem("storageUsuarioRegistrados", JSON.stringify(listaUsuariosRegistrados));
 
