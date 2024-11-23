@@ -41,6 +41,28 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+    operationTransferir.addEventListener("click", () => {
+      const botonTransferir = document.getElementById("botonTransferir");
+
+      if (botonTransferir) {
+        botonTransferir.removeEventListener("click", handleTransferirClick);
+        botonTransferir.addEventListener("click", handleTransferirClick);
+      }
+
+      toggleFunction(transferir);
+    });
+
+    function handleTransferirClick() {
+      const nombreCuentaDestino = document.getElementById("cuentaDestino");
+      const salarioTransferir = document.getElementById("salarioTransferir");
+      funcionTransferir(nombreCuentaDestino.value, Number(salarioTransferir.value));
+    }
+
+
+
+    /*
+      * Función Transferir
+    */
     function funcionTransferir(cuentaDestino, montoTransferir) {
       const listaUsuarios = JSON.parse(localStorage.getItem("storageUsuarioRegistrados"));
       const usuarioActual = JSON.parse(localStorage.getItem("usuario"));
@@ -79,22 +101,27 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    function handleTransferirClick() {
-      const nombreCuentaDestino = document.getElementById("cuentaDestino");
-      const salarioTransferir = document.getElementById("salarioTransferir");
-      funcionTransferir(nombreCuentaDestino.value, Number(salarioTransferir.value));
-    }
 
-    operationTransferir.addEventListener("click", () => {
-      const botonTransferir = document.getElementById("botonTransferir");
 
-      if (botonTransferir) {
-        botonTransferir.removeEventListener("click", handleTransferirClick);
-        botonTransferir.addEventListener("click", handleTransferirClick);
+
+
+    operationConsignar.addEventListener("click", () => {
+      const botonParaConsignar = document.getElementById("botonParaConsignar");
+
+      if (botonParaConsignar) {
+        botonParaConsignar.removeEventListener("click", handleConsignarClick);
+        botonParaConsignar.addEventListener("click", handleConsignarClick);
       }
 
-      toggleFunction(transferir);
+      toggleFunction(consignar);
     });
+
+    function handleConsignarClick() {
+          const usuarioActual = JSON.parse(localStorage.getItem("usuario"));
+          const valoraConsignar = document.getElementById("campo__consignar");
+
+          funcionConsignar(usuarioActual, valoraConsignar.value);
+    }
 
     function funcionConsignar(cuentaActual, montoConsignar) {
       const listaUsuarios = JSON.parse(localStorage.getItem("storageUsuarioRegistrados"));
@@ -112,23 +139,9 @@ document.addEventListener('DOMContentLoaded', () => {
       addMovimientos(consignar, montoConsignar);
     }
 
-    function handleConsignarClick() {
-      const usuarioActual = JSON.parse(localStorage.getItem("usuario"));
-      const valoraConsignar = document.getElementById("campo__consignar");
+   
 
-      funcionConsignar(usuarioActual, valoraConsignar.value);
-    }
 
-    operationConsignar.addEventListener("click", () => {
-      const botonParaConsignar = document.getElementById("botonParaConsignar");
-
-      if (botonParaConsignar) {
-        botonParaConsignar.removeEventListener("click", handleConsignarClick);
-        botonParaConsignar.addEventListener("click", handleConsignarClick);
-      }
-
-      toggleFunction(consignar);
-    });
 
     operationRetirar.addEventListener("click", () => {
       toggleFunction(retirar);
