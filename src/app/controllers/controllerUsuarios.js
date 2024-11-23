@@ -7,7 +7,6 @@ export function sesion(usuarioValidado) {
 
 document.addEventListener('DOMContentLoaded', () => {
   const usuarioValidadoParse = JSON.parse(localStorage.getItem("usuario"));
-  const listaUsuariosRegistrados = JSON.parse(localStorage.getItem('storageUsuarioRegistrados'));
 
   const nombreUsuario = document.getElementById("nombreUsuario");
   const nombreCuenta = document.getElementById("nombreCuenta");
@@ -148,25 +147,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function pintarMovimiento() {
-      const movimientosUsuario = JSON.parse(localStorage.getItem("listaMovimientosUsuarioSesion")) || [];
+      let movimientosUsuario = JSON.parse(localStorage.getItem("usuario")) || [];
+
       const tableBody = document.getElementById("tableBody");
 
       // Limpiar la tabla antes de agregar los movimientos
       tableBody.innerHTML = "";
 
-      movimientosUsuario.forEach((elemento) => {
-        const tableRow = document.createElement("tr");
+      movimientosUsuario.listaMovimientos.forEach((movimiento) => {
 
-        const campoMovimiento = document.createElement("td");
-        campoMovimiento.textContent = `${elemento.tipoMovimiento}`;
+          const tableRow = document.createElement("tr");
 
-        const campoValor = document.createElement("td");
-        campoValor.textContent = `$ ${elemento.valorMovimiento}`;
+          const campoMovimiento = document.createElement("td");
+          campoMovimiento.textContent = `${movimiento.tipoMovimiento}`;
 
-        tableRow.appendChild(campoMovimiento);
-        tableRow.appendChild(campoValor);
+          const campoValor = document.createElement("td");
+          campoValor.textContent = `$ ${movimiento.valorMovimiento}`;
 
-        tableBody.appendChild(tableRow);
+          tableRow.appendChild(campoMovimiento);
+          tableRow.appendChild(campoValor);
+
+          tableBody.appendChild(tableRow);
+  
+
       });
     }
   } else {
