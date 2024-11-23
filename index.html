@@ -3,17 +3,89 @@
 <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>ATM webpage</title>
+      <link rel="stylesheet" href="./assets/styles/index.css">
+      <title>ATM</title>
 </head>
 <body>
       <header></header>
       
       <main>
+            <section class="main">
+                
+                 <div class="main__mainHeader">
+                        <div class="mainHeader__Title">
+                              <div>
+                                    <h1>
+                                          Bienvenido a ATM
+                                    </h1>
+                                    <p>
+                                          Bienvenidos a ATM, una aplicación básica y eficiente diseñada para facilitar tus operaciones bancarias diarias. Con ATM, podrás realizar todas las transacciones esenciales desde la comodidad de tu dispositivo:
+                                    </p>
+      
+                                    <div class="operations">
+                                          <ul class="operations__iconList">
+                                                <li id="operation__transferir" class="operations__item">
+                                                      <img style="width: 40px;" class="operations__icon" src="./assets/img/transaccion.png" alt="trasnferir">
+                                                      <p>Transferir</p>
+                                                </li>
+                                                
+                                                <li id ="operation__consignar" class="operations__item">
+                                                      <img style="width: 40px;" class="operations__icon" src="./assets/img/consignar.png" alt="consignar">
+                                                      <p>Consignar</p>
+                                                </li>
+                                                
+                                                <li id="operation__retirar" class="operations__item">
+                                                      <img style="width: 40px;" class="operations__icon" src="./assets/img/retirar.png" alt="retirar">
+                                                      <p>Retirar</p>
+                                                </li>
+                                                
+                                                <li id="operation__movimientos" class="operations__item">
+                                                      <img style="width: 40px;" class="operations__icon" src="./assets/img/movimientos.png" alt="movimientos">
+                                                      <p>Movimientos</p>
+                                                </li>
+                                          </ul>
+                                    </div>
+      
+      
+                              </div>
+                              
+                        </div>
+                              
+                        <div>
+                              <img id="imagen" src="./assets/img/mobile.png" alt="">   
+                        </div>
+                 </div>
+
+                 <a href="#body"> <img class="go_Down" src="./assets/img/go_down.png" alt=""></a>
+   
+            </section>    
+
+                <section style="display: flex; flex-direction: column; align-items: center;" id="body" class="body">
+                  <section style="height: 80%">
+                        
+                              <section class="body__section">
+                                    <div class="body__mainTitle">
+                                          <h1>Gestiona tus finanzas</h1>
+                                          <p>Tomar el control de tus finanzas nunca fue tan fácil. Con herramientas prácticas y accesibles, puedes monitorear tus ingresos, gastos y ahorros en tiempo real. ¡Empieza hoy a gestionar tu futuro financiero!</p>
+                                    </div>
+            
+                                    <div>
+                                          <img class="userModel" style="width: 330px;" src="./assets/img/userModel.png" alt="">
+                                    </div>
+                              </section>
+                  </section>
+                  <a class="enlaceOperativo" style="border: 1px solid #888888; padding: 20px; border-radius: 10px; color: black; transition: 0.2s;" href="./src/views/forms/autentication.html">Comienza a gestionar tus finanzas</a>
+                </section>
+                
+
+            
+            
 
       </main>
 
       <footer></footer>
 
+      <script src="./assets/js/index.js"></script>
       <script src="./src/app/js/main.js"></script>
 </body>
 </html>
