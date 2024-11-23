@@ -1,13 +1,12 @@
 import { addMovimientos } from "./controllerMovimientos.js";
 
 export function sesion(usuarioValidado) {
-    localStorage.setItem("usuario", JSON.stringify(usuarioValidado));
-    window.location.href = "/src/views/dashboard/dashboard.html";
+  localStorage.setItem("usuario", JSON.stringify(usuarioValidado));
+  window.location.href = "/src/views/dashboard/dashboard.html";
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-
-  let usuarioValidadoParse = JSON.parse(localStorage.getItem("usuario"));
+  const usuarioValidadoParse = JSON.parse(localStorage.getItem("usuario"));
 
   const nombreUsuario = document.getElementById("nombreUsuario");
   const nombreCuenta = document.getElementById("nombreCuenta");
@@ -20,14 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
     numeroCuenta.textContent = `Numero de cuenta: ${usuarioValidadoParse.id}`;
     saldoCuenta.textContent = `Saldo: ${usuarioValidadoParse.saldo}`;
 
-    const operationTransferir = document.getElementById(
-      "operation__transferir"
-    );
+    const operationTransferir = document.getElementById("operation__transferir");
     const operationConsignar = document.getElementById("operation__consignar");
     const operationRetirar = document.getElementById("operation__retirar");
-    const operationMovimientos = document.getElementById(
-      "operation__movimientos"
-    );
+    const operationMovimientos = document.getElementById("operation__movimientos");
 
     const transferir = document.getElementById("transferir");
     const consignar = document.getElementById("consignar");
@@ -47,12 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function funcionTransferir(cuentaDestino, montoTransferir) {
-      let listaUsuarios = JSON.parse(
-        localStorage.getItem("storageUsuarioRegistrados")
-      );
-      let usuarioActual = JSON.parse(localStorage.getItem("usuario"));
+      const listaUsuarios = JSON.parse(localStorage.getItem("storageUsuarioRegistrados"));
+      const usuarioActual = JSON.parse(localStorage.getItem("usuario"));
 
-      let usuarioDestino = listaUsuarios.find(
+      const usuarioDestino = listaUsuarios.find(
         (usuario) => usuario.nombrePersona === cuentaDestino
       );
 
@@ -61,15 +54,20 @@ document.addEventListener('DOMContentLoaded', () => {
           usuarioActual.saldo -= montoTransferir;
           usuarioDestino.saldo += montoTransferir;
 
-          localStorage.setItem("usuario", JSON.stringify(usuarioActual));
-          localStorage.setItem(
-            "storageUsuarioRegistrados",
-            JSON.stringify(listaUsuarios)
-          );
+          const usuarioActualIndex = listaUsuarios.findIndex(usuario => usuario.nombrePersona === usuarioActual.nombrePersona);
+          if (usuarioActualIndex !== -1) {
+            listaUsuarios[usuarioActualIndex].saldo = usuarioActual.saldo;
+          }
 
-          console.log(
-            `Transferencia realizada: ${montoTransferir} de ${usuarioActual.nombrePersona} a ${usuarioDestino.nombrePersona}`
-          );
+          const usuarioDestinoIndex = listaUsuarios.findIndex(usuario => usuario.nombrePersona === usuarioDestino.nombrePersona);
+          if (usuarioDestinoIndex !== -1) {
+            listaUsuarios[usuarioDestinoIndex].saldo = usuarioDestino.saldo;
+          }
+
+          localStorage.setItem('usuario', JSON.stringify(usuarioActual));
+          localStorage.setItem('storageUsuarioRegistrados', JSON.stringify(listaUsuarios));
+
+          console.log(`Transferencia realizada: ${montoTransferir} de ${usuarioActual.nombrePersona} a ${usuarioDestino.nombrePersona}`);
           addMovimientos(transferir, Number(salarioTransferir.value));
 
           alert("Transferencia realizada con éxito");
@@ -79,6 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         alert("No existe la cuenta de destino");
       }
+    }
+
+    function handleTransferirClick() {
+      const nombreCuentaDestino = document.getElementById("cuentaDestino");
+      const salarioTransferir = document.getElementById("salarioTransferir");
+      funcionTransferir(nombreCuentaDestino.value, Number(salarioTransferir.value));
     }
 
     operationTransferir.addEventListener("click", () => {
@@ -92,23 +96,31 @@ document.addEventListener('DOMContentLoaded', () => {
       toggleFunction(transferir);
     });
 
-    function handleTransferirClick() {
-      const nombreCuentaDestino = document.getElementById("cuentaDestino");
-      const salarioTransferir = document.getElementById("salarioTransferir");
-      funcionTransferir(
-        nombreCuentaDestino.value,
-        Number(salarioTransferir.value)
-      );
-    }
-
     function funcionConsignar(cuentaActual, montoConsignar) {
+      const listaUsuarios = JSON.parse(localStorage.getItem("storageUsuarioRegistrados"));
+
       cuentaActual.saldo += Number(montoConsignar);
+
+      const usuarioActualIndex = listaUsuarios.findIndex(usuario => usuario.nombrePersona === cuentaActual.nombrePersona);
+
+      if (usuarioActualIndex !== -1) {
+        listaUsuarios[usuarioActualIndex].saldo = cuentaActual.saldo;
+      }
+
+      localStorage.setItem('usuario', JSON.stringify(cuentaActual));
+      localStorage.setItem('storageUsuarioRegistrados', JSON.stringify(listaUsuarios));
       addMovimientos(consignar, montoConsignar);
     }
 
-    /*Operación consignar */
+    function handleConsignarClick() {
+      const usuarioActual = JSON.parse(localStorage.getItem("usuario"));
+      const valoraConsignar = document.getElementById("campo__consignar");
+
+      funcionConsignar(usuarioActual, valoraConsignar.value);
+    }
+
     operationConsignar.addEventListener("click", () => {
-      let botonParaConsignar = document.getElementById("botonParaConsignar");
+      const botonParaConsignar = document.getElementById("botonParaConsignar");
 
       if (botonParaConsignar) {
         botonParaConsignar.removeEventListener("click", handleConsignarClick);
@@ -118,55 +130,46 @@ document.addEventListener('DOMContentLoaded', () => {
       toggleFunction(consignar);
     });
 
-    function handleConsignarClick() {
-      let usuarioActual = JSON.parse(localStorage.getItem("usuario"));
-      const valoraConsignar = document.getElementById("campo__consignar");
-
-      funcionConsignar(usuarioActual, valoraConsignar.value);
-    }
-
-    /*Operación Retirar */
     operationRetirar.addEventListener("click", () => {
       toggleFunction(retirar);
 
-      let botonParaRetirar = document.getElementById("botonParaRetirar");
+      const botonParaRetirar = document.getElementById("botonParaRetirar");
 
       botonParaRetirar.addEventListener("click", () => {
-        //Luis, acá va la lógica para retirar, no eliminar la funcionalidad de addMovimientos()
-
-        addMovimientos(
-          retirar /* Acá va la variable del valor que el usuario decidio usar */
-        );
+        // Lógica para retirar, no eliminar la funcionalidad de addMovimientos()
+        addMovimientos(retirar /* Acá va la variable del valor que el usuario decidió usar */);
       });
     });
 
     operationMovimientos.addEventListener("click", () => {
       pintarMovimiento();
-
       toggleFunction(movimientos);
     });
 
     function pintarMovimiento() {
-      let movimientosUsuario =
-        JSON.parse(localStorage.getItem("listaMovimientosUsuarioSesion")) || [];
-      let tableBody = document.getElementById("tableBody");
+      let movimientosUsuario = JSON.parse(localStorage.getItem("usuario")) || [];
+
+      const tableBody = document.getElementById("tableBody");
 
       // Limpiar la tabla antes de agregar los movimientos
       tableBody.innerHTML = "";
 
-      movimientosUsuario.forEach((elemento) => {
-        let tableRow = document.createElement("tr");
+      movimientosUsuario.listaMovimientos.forEach((movimiento) => {
 
-        let campoMovimiento = document.createElement("td");
-        campoMovimiento.textContent = `${elemento.tipoMovimiento}`;
+          const tableRow = document.createElement("tr");
 
-        let campoValor = document.createElement("td");
-        campoValor.textContent = `$ ${elemento.valorMovimiento}`;
+          const campoMovimiento = document.createElement("td");
+          campoMovimiento.textContent = `${movimiento.tipoMovimiento}`;
 
-        tableRow.appendChild(campoMovimiento);
-        tableRow.appendChild(campoValor);
+          const campoValor = document.createElement("td");
+          campoValor.textContent = `$ ${movimiento.valorMovimiento}`;
 
-        tableBody.appendChild(tableRow);
+          tableRow.appendChild(campoMovimiento);
+          tableRow.appendChild(campoValor);
+
+          tableBody.appendChild(tableRow);
+  
+
       });
     }
   } else {
