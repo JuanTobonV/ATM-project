@@ -41,6 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+
+    /*
+    * Operación Transferir
+    */
+
     operationTransferir.addEventListener("click", () => {
       const botonTransferir = document.getElementById("botonTransferir");
 
@@ -57,12 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const salarioTransferir = document.getElementById("salarioTransferir");
       funcionTransferir(nombreCuentaDestino.value, Number(salarioTransferir.value));
     }
-
-
-
-    /*
-      * Función Transferir
-    */
+    
     function funcionTransferir(cuentaDestino, montoTransferir) {
       const listaUsuarios = JSON.parse(localStorage.getItem("storageUsuarioRegistrados"));
       const usuarioActual = JSON.parse(localStorage.getItem("usuario"));
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
           localStorage.setItem('storageUsuarioRegistrados', JSON.stringify(listaUsuarios));
 
           console.log(`Transferencia realizada: ${montoTransferir} de ${usuarioActual.nombrePersona} a ${usuarioDestino.nombrePersona}`);
-          addMovimientos(transferir, Number(salarioTransferir.value));
+          addMovimientos(transferir, Number(salarioTransferir.value), cuentaDestino);
 
           alert("Transferencia realizada con éxito");
         } else {
@@ -101,9 +101,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-
-
-
+/* 
+ * Operación consignar 
+ */
 
     operationConsignar.addEventListener("click", () => {
       const botonParaConsignar = document.getElementById("botonParaConsignar");
@@ -137,11 +137,14 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('usuario', JSON.stringify(cuentaActual));
       localStorage.setItem('storageUsuarioRegistrados', JSON.stringify(listaUsuarios));
       addMovimientos(consignar, montoConsignar);
+      console.log(`Consignación de $${Number(montoConsignar)} realizada con exito`);
     }
 
    
 
-
+/*
+ * Operación Retirar
+ */
 
     operationRetirar.addEventListener("click", () => {
       toggleFunction(retirar);
@@ -153,6 +156,11 @@ document.addEventListener('DOMContentLoaded', () => {
         addMovimientos(retirar /* Acá va la variable del valor que el usuario decidió usar */);
       });
     });
+
+
+    /**
+     * *Operación movimientos
+     */
 
     operationMovimientos.addEventListener("click", () => {
       pintarMovimiento();
