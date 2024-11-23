@@ -41,6 +41,28 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+
+    /*
+    * Operación Transferir
+    */
+
+    operationTransferir.addEventListener("click", () => {
+      const botonTransferir = document.getElementById("botonTransferir");
+
+      if (botonTransferir) {
+        botonTransferir.removeEventListener("click", handleTransferirClick);
+        botonTransferir.addEventListener("click", handleTransferirClick);
+      }
+
+      toggleFunction(transferir);
+    });
+
+    function handleTransferirClick() {
+      const nombreCuentaDestino = document.getElementById("cuentaDestino");
+      const salarioTransferir = document.getElementById("salarioTransferir");
+      funcionTransferir(nombreCuentaDestino.value, Number(salarioTransferir.value));
+    }
+    
     function funcionTransferir(cuentaDestino, montoTransferir) {
       const listaUsuarios = JSON.parse(localStorage.getItem("storageUsuarioRegistrados"));
       const usuarioActual = JSON.parse(localStorage.getItem("usuario"));
@@ -68,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
           localStorage.setItem('storageUsuarioRegistrados', JSON.stringify(listaUsuarios));
 
           console.log(`Transferencia realizada: ${montoTransferir} de ${usuarioActual.nombrePersona} a ${usuarioDestino.nombrePersona}`);
-          addMovimientos(transferir, Number(salarioTransferir.value));
+          addMovimientos(transferir, Number(salarioTransferir.value), cuentaDestino);
 
           alert("Transferencia realizada con éxito");
         } else {
@@ -79,22 +101,27 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    function handleTransferirClick() {
-      const nombreCuentaDestino = document.getElementById("cuentaDestino");
-      const salarioTransferir = document.getElementById("salarioTransferir");
-      funcionTransferir(nombreCuentaDestino.value, Number(salarioTransferir.value));
-    }
+/* 
+ * Operación consignar 
+ */
 
-    operationTransferir.addEventListener("click", () => {
-      const botonTransferir = document.getElementById("botonTransferir");
+    operationConsignar.addEventListener("click", () => {
+      const botonParaConsignar = document.getElementById("botonParaConsignar");
 
-      if (botonTransferir) {
-        botonTransferir.removeEventListener("click", handleTransferirClick);
-        botonTransferir.addEventListener("click", handleTransferirClick);
+      if (botonParaConsignar) {
+        botonParaConsignar.removeEventListener("click", handleConsignarClick);
+        botonParaConsignar.addEventListener("click", handleConsignarClick);
       }
 
-      toggleFunction(transferir);
+      toggleFunction(consignar);
     });
+
+    function handleConsignarClick() {
+          const usuarioActual = JSON.parse(localStorage.getItem("usuario"));
+          const valoraConsignar = document.getElementById("campo__consignar");
+
+          funcionConsignar(usuarioActual, valoraConsignar.value);
+    }
 
     function funcionConsignar(cuentaActual, montoConsignar) {
       const listaUsuarios = JSON.parse(localStorage.getItem("storageUsuarioRegistrados"));
@@ -110,25 +137,14 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('usuario', JSON.stringify(cuentaActual));
       localStorage.setItem('storageUsuarioRegistrados', JSON.stringify(listaUsuarios));
       addMovimientos(consignar, montoConsignar);
+      console.log(`Consignación de $${Number(montoConsignar)} realizada con exito`);
     }
 
-    function handleConsignarClick() {
-      const usuarioActual = JSON.parse(localStorage.getItem("usuario"));
-      const valoraConsignar = document.getElementById("campo__consignar");
+   
 
-      funcionConsignar(usuarioActual, valoraConsignar.value);
-    }
-
-    operationConsignar.addEventListener("click", () => {
-      const botonParaConsignar = document.getElementById("botonParaConsignar");
-
-      if (botonParaConsignar) {
-        botonParaConsignar.removeEventListener("click", handleConsignarClick);
-        botonParaConsignar.addEventListener("click", handleConsignarClick);
-      }
-
-      toggleFunction(consignar);
-    });
+/*
+ * Operación Retirar
+ */
 
     operationRetirar.addEventListener("click", () => {
       toggleFunction(retirar);
@@ -140,6 +156,11 @@ document.addEventListener('DOMContentLoaded', () => {
         addMovimientos(retirar /* Acá va la variable del valor que el usuario decidió usar */);
       });
     });
+
+
+    /**
+     * *Operación movimientos
+     */
 
     operationMovimientos.addEventListener("click", () => {
       pintarMovimiento();
@@ -159,7 +180,22 @@ document.addEventListener('DOMContentLoaded', () => {
           const tableRow = document.createElement("tr");
 
           const campoMovimiento = document.createElement("td");
-          campoMovimiento.textContent = `${movimiento.tipoMovimiento}`;
+          
+          if(movimiento.tipoMovimiento === "Consignacion"){
+              campoMovimiento.textContent = `${movimiento.tipoMovimiento}`;
+              campoMovimiento.style.color = "green";
+              campoMovimiento.style.fontWeight = 600
+          }
+          else if(movimiento.tipoMovimiento === "Retiro"){
+            campoMovimiento.textContent = `${movimiento.tipoMovimiento}`;
+            campoMovimiento.style.color = "red";
+            campoMovimiento.style.fontWeight = 600
+          }
+          else{
+            campoMovimiento.textContent = `${movimiento.tipoMovimiento}`;
+
+          }
+
 
           const campoValor = document.createElement("td");
           campoValor.textContent = `$ ${movimiento.valorMovimiento}`;

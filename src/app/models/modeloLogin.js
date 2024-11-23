@@ -21,6 +21,6 @@ botonLogin.addEventListener('click', () => {
     
     if (!usuarioEncontrado) {
     alert('Tu usuario o contraseña son inválidos, registrate!');
-    window.location.href = '../../views/forms/index.html';
+    window.location.href = '../../views/forms/autentication.html';
     }
 })
