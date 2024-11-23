@@ -1,0 +1,124 @@
+header{
+      background-color: black;
+      
+}
+
+header .menu{
+      border: none;
+}
+
+header img, header a{
+      filter: invert(1);
+}
+header #cerrarSesion{
+      display: none;
+}
+
+.main, .body{
+      height: 94vh;
+}
+
+.main{
+      background-color: black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+}
+
+.go_Down{
+      width: 50px;
+      height: 50px;
+}
+
+@media (width > 1200px) {
+
+      *{
+            scroll-behavior: smooth;
+      }
+
+      .main__mainHeader{
+            height: 90%;
+            color: white;
+            display: flex;
+            padding: 0% 20% 0%;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            gap: 80px;
+            text-align: center;
+      }
+      
+      .main__mainHeader img{
+            width: 320px;
+      }
+      
+      .mainHeader__Title h1{
+            font-size: 2.5rem;
+            font-weight: 800;
+      }
+      .mainHeader__Title p {
+            font-size: 1.5rem;
+            text-align: center;
+      }
+      
+      .operations{
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            
+      }
+      
+      
+      .operations__iconList{
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex:1;
+            
+      }
+      
+      .operations__item{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+      }
+      
+      .operations__item p{
+            font-size: 0.9rem;
+      }
+      
+      .operations__icon{
+            filter: invert(1);
+      }
+
+      .body__section{
+            display: flex;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            padding: 0 25%;
+            gap: 30px;
+      }
+
+      .body__mainTitle h1{
+            font-size: 2.5rem;
+      }
+
+      .body__mainTitle p{
+            font-size: 1.5rem;
+            color: #888888;
+      }
+
+      .enlaceOperativo:hover{
+            background-color: #f1efef;
+      }
+      
+}
+
+@media (width < 1200px) {
+      .main__mainHeader{
+            flex-direction: column;
+      }
+}
