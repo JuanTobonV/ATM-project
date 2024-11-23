@@ -26,6 +26,7 @@
                   width: 100%;
                   display: flex;
                   justify-content: space-between;
+                  align-items: center;
                   padding: 20px;
                   border-bottom: 1px solid #aaaaaa;
                   z-index: 1;
@@ -41,11 +42,9 @@
                   font-weight: 800;
             }
 
-            .menu__closeSection{
-                  transition: 0.2s;
-            }
-            .menu__closeSection:hover{
-                  color: red;
+            .menu__closeSection img{
+                  filter: invert(1);
+                  width: 30px;
             }
 
 
@@ -55,8 +54,8 @@
       <header>
             <nav>
                   <div class="menu">
-                        <a class="menu__item menu__title" href="">ATM</a>
-                        <a id="cerrarSesion" class="menu__item menu__closeSection" href="/src/views/forms/index.html">Cerrar sesión</a>
+                        <a class="menu__item menu__title" href="/index.html">ATM</a>
+                        <a id="cerrarSesion" class="menu__item menu__closeSection" href="/src/views/forms/autentication.html"><img src="/assets/img/user.png" alt=""></a>
                   </div>
             </nav>
       </header>

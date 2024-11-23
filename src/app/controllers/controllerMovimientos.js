@@ -45,7 +45,7 @@ export function addMovimientos(tipo, valorMovimiento, cuentaDestino = []) {
       crearMovimiento("Retiro", valorMovimiento);
       break;
     case transferir:
-      crearMovimiento("transferencia", valorMovimiento);
+      crearMovimiento("Transferencia", valorMovimiento);
       break;
     default:
       console.error("Tipo de movimiento no reconocido");
