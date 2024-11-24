@@ -180,7 +180,20 @@ document.addEventListener('DOMContentLoaded', () => {
           const tableRow = document.createElement("tr");
 
           const campoMovimiento = document.createElement("td");
-          campoMovimiento.textContent = `${movimiento.tipoMovimiento}`;
+          
+          if(movimiento.tipoMovimiento === "Consignacion"){
+            campoMovimiento.textContent = `${movimiento.tipoMovimiento}`;
+            campoMovimiento.style.color = "green";
+            campoMovimiento.style.fontWeight = 600
+          }
+          else if(movimiento.tipoMovimiento === "Retiro"){
+            campoMovimiento.textContent = `${movimiento.tipoMovimiento}`;
+            campoMovimiento.style.color = "red";
+            campoMovimiento.style.fontWeight = 600
+          }
+          else{
+            campoMovimiento.textContent = `${movimiento.tipoMovimiento}`;
+          }
 
           const campoValor = document.createElement("td");
           campoValor.textContent = `$ ${movimiento.valorMovimiento}`;
