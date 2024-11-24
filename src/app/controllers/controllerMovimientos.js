@@ -1,3 +1,4 @@
+
 export function addMovimientos(tipo, valorMovimiento, cuentaDestino = []) {
 
   let cuentaActual = JSON.parse(localStorage.getItem("usuario")) || [] 
@@ -45,7 +46,7 @@ export function addMovimientos(tipo, valorMovimiento, cuentaDestino = []) {
       crearMovimiento("Retiro", valorMovimiento);
       break;
     case transferir:
-      crearMovimiento("Transferencia", valorMovimiento);
+      crearMovimiento("transferencia", valorMovimiento);
       break;
     default:
       console.error("Tipo de movimiento no reconocido");
