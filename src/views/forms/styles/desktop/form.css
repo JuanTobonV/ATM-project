@@ -1,0 +1,116 @@
+header #cerrarSesion{
+    display: none;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(220, 217, 217);
+}
+
+.contenedor{
+    width: 30%;
+    height: 75vh;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;    
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.encabezado{
+    text-align: center;
+    width: 70%;
+}
+
+#contenido-formulario1{
+    width: 80%;
+}
+
+#formularioRegistro {
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#formularioIngreso {
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Disposición vertical */
+    gap: 5px; /* Espacio entre los elementos del formulario */
+}
+
+.botones{
+    margin-top: 10px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    border-radius: 8px;
+    height: 35px;
+}
+
+.inputs{
+    border-radius: 8px;
+    height: 35px;
+}
+
+.enlaces{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(188, 185, 185);
+    border-radius: 5px;
+    padding: 5px;
+    width: 50%;
+    
+}
+
+#enlace-registro{
+    width: 100%;
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    border-radius: 5px;
+    
+}
+
+#enlace-login{
+    width: 100%;
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    border-radius: 5px;
+    
+}
+
+.fondo-enlace-registro{
+    background-color: white;
+}
+
+.fondo-enlace-login{
+    background-color: rgb(188, 185, 185);
+}
+
+#contenido-formulario2{
+    display: none;
+    width: 80%;
+}
+
