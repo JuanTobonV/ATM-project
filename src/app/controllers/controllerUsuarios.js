@@ -158,23 +158,55 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       
     }
-
-   
-
 /*
  * Operación Retirar
  */
-
     operationRetirar.addEventListener("click", () => {
-      toggleFunction(retirar);
 
       const botonParaRetirar = document.getElementById("botonParaRetirar");
 
-      botonParaRetirar.addEventListener("click", () => {
-        // Lógica para retirar, no eliminar la funcionalidad de addMovimientos()
-        addMovimientos(retirar /* Acá va la variable del valor que el usuario decidió usar */);
-      });
+      if (botonParaRetirar) {
+        botonParaRetirar.removeEventListener("click", handleRetirarClick);
+        botonParaRetirar.addEventListener("click", handleRetirarClick);
+      }
+
+      toggleFunction(retirar);
     });
+
+    function handleRetirarClick() {
+      const usuarioActual = JSON.parse(localStorage.getItem("usuario"));
+      const valoraRetirar = document.getElementById("campo__retirar");
+
+      funcionRetirar(usuarioActual, valoraRetirar.value);
+    }
+
+    function funcionRetirar(cuentaActual, montoRetirar) {
+      const listaUsuarios = JSON.parse(localStorage.getItem("storageUsuarioRegistrados"));
+
+      cuentaActual.saldo = cuentaActual.saldo - Number(montoRetirar);
+
+      const usuarioActualIndex = listaUsuarios.findIndex(usuario => usuario.nombrePersona === cuentaActual.nombrePersona);
+
+      if (usuarioActualIndex !== -1) {
+        listaUsuarios[usuarioActualIndex].saldo = cuentaActual.saldo;
+      }
+
+      localStorage.setItem('usuario', JSON.stringify(cuentaActual));
+      localStorage.setItem('storageUsuarioRegistrados', JSON.stringify(listaUsuarios));
+
+     // botonParaRetirar.addEventListener("click", () => {
+        // Lógica para retirar, no eliminar la funcionalidad de addMovimientos()
+        addMovimientos(retirar, montoRetirar /* Acá va la variable del valor que el usuario decidió usar */);
+      //});
+
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `Retiro de $${Number(montoRetirar)} realizado con exito`,
+      });
+    }
+
+    
 
 
     /**
