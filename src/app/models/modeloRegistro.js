@@ -63,6 +63,21 @@ botonRegistro.addEventListener('click', function(event) {
         saldo: 200000
     }
 
+    const coincidencia = listaUsuariosRegistrados.find(userAux => userAux.nombrePersona === nombreUsuarioRegistro.value)
+
+    if(coincidencia){
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "El usuario ya existe...!"
+            });
+    
+            nombreUsuarioRegistro.value = '';
+            contraseñaUsuarioRegistro.value = '';
+            confirmarContraseñaUsuarioRegistro.value = '';
+            return;
+    }
+
     listaUsuariosRegistrados.push(usuario);
     localStorage.setItem("storageUsuarioRegistrados", JSON.stringify(listaUsuariosRegistrados));
 
