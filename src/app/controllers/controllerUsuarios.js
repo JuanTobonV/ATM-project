@@ -89,15 +89,28 @@ document.addEventListener('DOMContentLoaded', () => {
           localStorage.setItem('usuario', JSON.stringify(usuarioActual));
           localStorage.setItem('storageUsuarioRegistrados', JSON.stringify(listaUsuarios));
 
-          console.log(`Transferencia realizada: ${montoTransferir} de ${usuarioActual.nombrePersona} a ${usuarioDestino.nombrePersona}`);
           addMovimientos(transferir, Number(salarioTransferir.value), cuentaDestino);
 
-          alert("Transferencia realizada con éxito");
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: `Transferencia de $${montoTransferir} de ${usuarioActual.nombrePersona} a ${usuarioDestino.nombrePersona}`,
+            timer: 2000
+          });
+
         } else {
-          alert("Saldo insuficiente");
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Saldo insuficiente",
+          });
         }
       } else {
-        alert("No existe la cuenta de destino");
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "No existe la cuenta de destino",
+        });
       }
     }
 
@@ -137,7 +150,13 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('usuario', JSON.stringify(cuentaActual));
       localStorage.setItem('storageUsuarioRegistrados', JSON.stringify(listaUsuarios));
       addMovimientos(consignar, montoConsignar);
-      console.log(`Consignación de $${Number(montoConsignar)} realizada con exito`);
+      
+      Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `Consignación de $${Number(montoConsignar)} realizada con exito`,
+      });
+      
     }
 
    
